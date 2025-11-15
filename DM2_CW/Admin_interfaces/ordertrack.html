@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+
+   /* Logo Bar Styles */
+
+   @font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-VariableFont_wght.ttf") format("truetype"),
+         url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900; /* Range for variable font */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling but keeps vertical */
+    overflow-y: auto;   /* Ensures vertical scrolling is enabled */
+}
+
+.logo-bar {
+    background-color: white;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centers content inside */
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+
+}
+
+.logo-img {
+    height: 90px;
+    width: 100px;
+}
+
+
+.logo-text {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e8b57; /* Green color */
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    background-color: #006f5b; /* Green background */
+    padding: 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 300px; /* Adjust width as needed */
+    justify-content: left; /* Aligns the search bar to the left */
+    margin-left: 0; 
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust icon position */
+    width: 20px;
+    height: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Extra left padding for icon space */
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+
+.nav-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: white; /* White text on green background */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Previous styles remain the same until .auth-buttons */
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* Reduced gap since buttons will have their own padding */
+    margin-left: 20px;
+    
+}
+
+.signin-dropdown {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+   /* Added padding to create button shape */
+    border: 2px solid white;  /* White border */
+    transition: all 0.3s ease;  /* Smooth hover effect */
+    width: 150px;
+    border-radius: 25px;
+
+}
+
+
+
+/* Specific style for SIGN IN */
+.signin-dropdown {
+    background-color: rgb(255, 255, 255);  /* Slight white tint */
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between icon and text */
+    display: flex; /* Ensures content inside the button is aligned properly */
+    align-items: center; /* Centers the icon and text vertically */
+    justify-content: center; /* Centers the icon and text horizontally */
+    padding: 8px 10px; 
+    border-radius: 20px;  /* Slightly rounded corners */
+
+
+}
+
+
+.signin-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.signin-icon {
+    height: 24px;
+    width: auto;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      background-color: #f8f9fa;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #eaeaea;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      font-weight: bold;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9em;
+      text-transform: capitalize;
+    }
+
+    .order-confirmed { background: #e0f7fa; color: #006064; }
+    .preparing       { background: #fff9c4; color: #827717; }
+    .out-for-delivery{ background: #d1c4e9; color: #4527a0; }
+    .delivered       { background: #c8e6c9; color: #2e7d32; }
+    .cancelled       { background: #ffcdd2; color: #c62828; }
+
+    .btn {
+      border: none;
+      padding: 8px;
+      margin: 2px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 0.85em;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-view     { background: #6366f1; }
+    .btn-confirm  { background: #22c55e; }
+    .btn-prepare  { background: #facc15; color: black; }
+    .btn-deliver  { background: #3b82f6; }
+    .btn-done     { background: #16a34a; }
+    .btn-cancel   { background: #ef4444; }
+
+    .btn i {
+      margin-right: 4px;
+      width: 16px;
+      height: 16px;
+    }
+
+    footer {
+            background:#006f5b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            position: relative;
+            margin-top: 120px;
+        }
+        
+        footer p {
+            color: black;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-light);
+        }
+
+  </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-bar">
+            <div class="logo-container">
+                <img src="../Admin_interfaces/Pictures/Logonew.jpg" alt="Urban Foods Logo" class="logo-img">
+            </div>
+        </div>
+        
+        <div class="nav-bar">
+            <div class="nav-content">
+                <div class="search-container">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 15L21 21" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="10" cy="10" r="7" stroke="gray" stroke-width="2"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search...">
+                </div>
+                
+                <nav class="nav-tabs">
+                    <a href="admin_home.html">DASHBOARD</a>
+                    <a href="Product Manager.html">PRODUCTS</a>
+                    <a href="ordertrack.html">ORDERS</a>
+                    <!-- <a href="#"></a> -->
+                    <a href="deliverman.html">DELIVERYMAN</a>
+    
+                </nav>
+                
+                <div class="auth-buttons">
+                    <div class="food-cart-text">
+                       
+                    </div>
+                
+                    <div class="signin-dropdown">
+                        <a href="login.html" class="signin-link">
+                            <img src="../Admin_interfaces/Pictures/signin.png" alt="Sign In" class="signin-icon">
+                            <span>SIGN IN</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <h2>Order Management</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Total</th>
+        <th>Items</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="orders">
+      <tr data-order-id="1">
+        <td>#001</td>
+        <td>Alice</td>
+        <td>$25.00</td>
+        <td>3</td>
+        <td><span class="status order-confirmed">Order Confirmed</span></td>
+        <td>
+          <button class="btn btn-view"><i data-lucide="eye"></i>View</button>
+          <button class="btn btn-confirm"><i data-lucide="check"></i>Confirm</button>
+          <button class="btn btn-prepare"><i data-lucide="settings"></i>Preparing</button>
+          <button class="btn btn-deliver"><i data-lucide="truck"></i>Out</button>
+          <button class="btn btn-done"><i data-lucide="package"></i>Delivered</button>
+          <button class="btn btn-cancel"><i data-lucide="x"></i>Cancel</button>
+        </td>
+      </tr>
+      <tr data-order-id="2">
+        <td>#002</td>
+        <td>Bob</td>
+        <td>$40.00</td>
+        <td>5</td>
+        <td><span class="status preparing">Preparing</span></td>
+        <td>
+          <button class="btn btn-view"><i data-lucide="eye"></i>View</button>
+          <button class="btn btn-confirm"><i data-lucide="check"></i>Confirm</button>
+          <button class="btn btn-prepare"><i data-lucide="settings"></i>Preparing</button>
+          <button class="btn btn-deliver"><i data-lucide="truck"></i>Out</button>
+          <button class="btn btn-done"><i data-lucide="package"></i>Delivered</button>
+          <button class="btn btn-cancel"><i data-lucide="x"></i>Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    lucide.createIcons();
+
+    const ordersTbody = document.getElementById('orders');
+
+    const statusMap = {
+      'btn-confirm': ['order-confirmed', 'Order Confirmed', 'CONFIRMED'],
+      'btn-prepare': ['preparing', 'Preparing', 'PREPARING'],
+      'btn-deliver': ['out-for-delivery', 'Out for Delivery', 'OUT_FOR_DELIVERY'],
+      'btn-done': ['delivered', 'Delivered', 'DELIVERED'],
+      'btn-cancel': ['cancelled', 'Cancelled', 'CANCELLED'],
+    };
+
+    // Fetch orders from backend
+    fetch('http://localhost:8082/api/orders')
+      .then(response => response.json())
+      .then(orders => {
+        orders.forEach(order => {
+          const row = document.createElement('tr');
+          row.setAttribute('data-order-id', order.id);
+
+          // Format items list
+          const itemsList = order.items?.map(item => 
+            `${item.name} (${item.quantity}x $${item.price.toFixed(2)})`
+          ).join(', ') || 'No items';
+
+          row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.customer}</td>
+            <td>$${order.total.toFixed(2)}</td>
+            <td>${itemsList}</td>
+            <td><span class="status ${mapStatusToClass(order.status)}">${formatStatus(order.status)}</span></td>
+            <td>
+              <button class="btn btn-view"><i data-lucide="eye"></i>View</button>
+              ${order.status === 'PENDING' ? '<button class="btn btn-confirm"><i data-lucide="check"></i>Confirm</button>' : ''}
+              ${order.status === 'CONFIRMED' ? '<button class="btn btn-prepare"><i data-lucide="settings"></i>Preparing</button>' : ''}
+              ${order.status === 'PREPARING' ? '<button class="btn btn-deliver"><i data-lucide="truck"></i>Out</button>' : ''}
+              ${order.status === 'OUT_FOR_DELIVERY' ? '<button class="btn btn-done"><i data-lucide="package"></i>Delivered</button>' : ''}
+              ${order.status !== 'DELIVERED' && order.status !== 'CANCELLED' ? '<button class="btn btn-cancel"><i data-lucide="x"></i>Cancel</button>' : ''}
+            </td>
+          `;
+          ordersTbody.appendChild(row);
+        });
+        lucide.createIcons();
+      });
+
+    // Status update handler
+    document.addEventListener('click', function (event) {
+      const button = event.target.closest('button');
+      if (!button) return;
+
+      const row = button.closest('tr');
+      const orderId = row.querySelector('td:first-child').textContent;
+      const statusSpan = row.querySelector('.status');
+
+      for (const cls in statusMap) {
+        if (button.classList.contains(cls)) {
+          const [newClass, newText, backendStatus] = statusMap[cls];
+
+          // Update UI
+          statusSpan.className = 'status ' + newClass;
+          statusSpan.textContent = newText;
+
+          // Update backend
+          fetch(`http://localhost:8082/api/orders/${orderId}/status`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: backendStatus })
+          })
+          .then(res => {
+            if (!res.ok) throw new Error('Update failed');
+            location.reload();
+          })
+          .catch(err => {
+            alert('Failed to update order status');
+            location.reload();
+          });
+          break;
+        }
+      }
+    });
+
+    function formatStatus(status) {
+      return status.toLowerCase().replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function mapStatusToClass(status) {
+      const statusMap = {
+        'PENDING': 'pending',
+        'CONFIRMED': 'order-confirmed',
+        'PREPARING': 'preparing',
+        'OUT_FOR_DELIVERY': 'out-for-delivery',
+        'DELIVERED': 'delivered',
+        'CANCELLED': 'cancelled'
+      };
+      return statusMap[status] || 'pending';
+    }
+</script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Urban Food Store | All Rights Reserved</p>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+    </div>
+</footer>
+</body>
+</html>

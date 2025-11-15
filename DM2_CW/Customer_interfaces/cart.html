@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart & Checkout</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <header>
+        <h1>🛒 Shopping Cart</h1>
+    </header>
+
+    <div class="container">
+        
+        <h2>Your Cart</h2>
+
+        <!-- Dynamic Cart Items Here -->
+        <div class="cart-items">
+            <!-- Items will be inserted by JS -->
+        </div>
+
+        <!-- Total -->
+        <div class="total">Total: <strong>$0.00</strong></div>
+
+        <!-- Delivery Options -->
+        <div class="delivery-options">
+            <h3>Delivery Options</h3>
+            <label><input type="radio" name="delivery" value="home" checked> Home Delivery</label>
+            <label><input type="radio" name="delivery" value="pickup"> Store Pickup</label>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+            <h3>Payment Method</h3>
+            <label><input type="radio" name="payment" value="credit" checked> Visa Card</label>
+            
+            <!-- Visa Card Input -->
+            <div class="card-input">
+                <input type="text" placeholder="0000 0000 0000 0000">
+                <div class="card-logo">
+                    <img src="../Customer_interfaces/Pictures/visa-logo.png" alt="Visa Logo">
+                </div>
+            </div>
+
+            <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+            
+            <!-- PayPal Input -->
+            <div class="card-input">
+                <input type="text" placeholder="0000 0000 0000 0000">
+                <div class="card-logo">
+                    <img src="../Customer_interfaces/Pictures/mastercard-logo.png" alt="MasterCard Logo">
+                </div>
+            </div>
+
+            <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
+        </div>
+
+        <!-- Checkout Button -->
+        <button class="checkout-btn">Proceed to Checkout</button>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 My Store | All Rights Reserved</p>
+    </footer>
+
+
+
+
+
+    
+
+    <!-- Link JS -->
+    <script >
+        // cart.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadCartItems();
+});
+
+function loadCartItems() {
+    fetch('http://localhost:8080/cart/items')
+        .then(response => response.json())
+        .then(data => {
+            const cartItemsDiv = document.querySelector('.cart-items');
+            cartItemsDiv.innerHTML = '';
+
+            if (data.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty!</p>';
+            } else {
+                data.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <span>${item.name}</span>
+                        <span>$${item.price}</span>
+                        <div class="quantity-control">
+                            <button onclick="updateQuantity(${item.id}, -1)">➖</button>
+                            <span id="qty-${item.id}">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)">➕</button>
+                        </div>
+                        <button class="delete-btn" onclick="deleteItem(${item.id})">🗑</button>
+                    `;
+                    cartItemsDiv.appendChild(cartItem);
+                });
+            }
+
+            updateTotal(data);
+        })
+        .catch(error => console.error('Error loading cart items:', error));
+}
+
+function deleteItem(itemId) {
+    fetch(http://localhost:8080/cart/delete/${itemId}, { method: 'DELETE' })
+        .then(() => loadCartItems())
+        .catch(error => console.error('Error deleting item:', error));
+}
+
+function updateQuantity(itemId, change) {
+    const quantitySpan = document.getElementById(qty-${itemId});
+    let currentQty = parseInt(quantitySpan.textContent);
+
+    const newQty = currentQty + change;
+    if (newQty < 1) return; // Don't allow less than 1
+
+    fetch(http://localhost:8080/cart/update/${itemId}?quantity=${newQty}, { method: 'PUT' })
+        .then(() => loadCartItems())
+        .catch(error => console.error('Error updating quantity:', error));
+}
+
+function updateTotal(items) {
+    let total = 0;
+    items.forEach(item => {
+        total += item.price * item.quantity;
+    });
+
+    document.querySelector('.total strong').textContent = $${total.toFixed(2)};
+}
+    </script>
+
+</body>
+</html>

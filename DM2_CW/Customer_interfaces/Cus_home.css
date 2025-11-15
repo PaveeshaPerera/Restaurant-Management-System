@@ -1,0 +1,430 @@
+/* Logo Bar Styles */
+
+@font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-VariableFont_wght.ttf") format("truetype"),
+         url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900; /* Range for variable font */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling but keeps vertical */
+    overflow-y: auto;   /* Ensures vertical scrolling is enabled */
+}
+
+.logo-bar {
+    background-color: white;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centers content inside */
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.logo-img {
+    height: 90px;
+    width: 100px;
+}
+
+
+.logo-text {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e8b57; /* Green color */
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    background-color: #006f5b; /* Green background */
+    padding: 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 300px; /* Adjust width as needed */
+    justify-content: flex-start; /* Aligns the search bar to the left */
+    margin-left: 0; 
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust icon position */
+    width: 20px;
+    height: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Extra left padding for icon space */
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+
+.nav-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: white; /* White text on green background */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Previous styles remain the same until .auth-buttons */
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* Reduced gap since buttons will have their own padding */
+    margin-left: 20px;
+    
+}
+
+.food-cart-text, .signin-dropdown {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+   /* Added padding to create button shape */
+    border: 2px solid white;  /* White border */
+    transition: all 0.3s ease;  /* Smooth hover effect */
+    width: 150px;
+    border-radius: 25px;
+
+}
+
+
+
+/* Specific style for FOOD CART */
+.food-cart-text {
+    background-color: transparent;  /* No fill color */
+    display: flex; /* Ensures content inside the button is aligned properly */
+    align-items: center; /* Centers the icon and text vertically */
+    justify-content: center; /* Centers the icon and text horizontally */
+    padding: 5px 14px; 
+    width: 180px; /* Adjust width to make it longer */
+    height: 30px;
+    gap: 8px; 
+      /* Slightly rounded corners */
+
+}
+
+.bell-container {
+    width: 30px;
+    height: 30px;
+    background-color: #006f5b; /* Green background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+    
+}
+
+.cart-badge {
+    background-color: white; /* White background */
+    color: #006f5b; /* Text color */
+    font-size: 14px;
+    font-weight: bold;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+}
+
+
+/* Specific style for SIGN IN */
+.signin-dropdown {
+    background-color: rgb(255, 255, 255);  /* Slight white tint */
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between icon and text */
+    display: flex; /* Ensures content inside the button is aligned properly */
+    align-items: center; /* Centers the icon and text vertically */
+    justify-content: center; /* Centers the icon and text horizontally */
+    padding: 8px 10px; 
+    border-radius: 20px;  /* Slightly rounded corners */
+
+
+}
+
+.cart-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.signin-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.signin-icon {
+    height: 24px;
+    width: auto;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+}
+
+.carousel {
+    position: relative;
+    max-width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.carousel-images {
+    display: flex;
+    position: relative;
+    width: 100%;
+    transition: opacity 1s ease-in-out; /* Adds a smooth fade transition */
+
+}
+
+.slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+}
+
+.headline {
+    position: absolute;
+    top: -130px; /* Adjust this value to move the text lower or higher */
+    left: 50%;
+    transform: translateX(-50%); /* Horizontally centers the text */
+    font-family: "Lora" ,serif;
+    font-size: 80px;
+    font-weight: bold;
+    background: transparent;
+    padding: 10px;
+    text-shadow: 7px 3px 5px rgba(0, 0, 0, 0.8);
+    color: white;
+    white-space: nowrap;
+    text-align: center;
+}
+
+
+
+.subtext {
+    font-family: "Lora" ,serif;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 50px;
+    display: inline-block;
+    text-shadow: 10px 2px 4px rgba(0, 0, 0, 0.7); /* Black shadow */
+    color: white;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 15px;
+    
+}
+
+.grid-item {
+    position: relative;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+/* Apply filter only to the background image */
+.grid-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(50%) saturate(50%);
+}
+
+/* Ensure text and buttons appear above the image */
+.menu-title, .btn {
+    font-family: "Lora" ,serif;
+
+    position: relative;
+    z-index: 2;
+}
+
+.menu-title {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    font-size: 41px;
+    font-weight: bold;
+    color: white;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #0f927a;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #004d42;
+    transform: scale(1.05);
+}
+
+.partnerships {
+    padding: 80px;
+    background-color: #f8f8f8;
+    text-align: center;
+    
+}
+
+.partners {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partners img {
+    /* max-width: 40%;  /* Reduce size */
+    /* height: auto; */ 
+    width: 50%;  /* Makes image stretch fully */
+    height: 250px;  /* Maintains aspect ratio */
+    display: block;
+    margin: 0 auto;  /* Centers the image */
+}
+
+/* Footer */
+        footer {
+            background:#006f5b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            position: relative;
+            margin-top: auto;
+        }
+        
+        footer p {
+            color: black;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-light);
+        }

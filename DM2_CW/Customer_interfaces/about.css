@@ -1,0 +1,435 @@
+/* Logo Bar Styles */
+
+@font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-VariableFont_wght.ttf") format("truetype"),
+         url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900; /* Range for variable font */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("Fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling but keeps vertical */
+    overflow-y: auto;   /* Ensures vertical scrolling is enabled */
+}
+
+.logo-bar {
+    background-color: white;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centers content inside */
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.logo-img {
+    height: 90px;
+    width: 100px;
+}
+
+
+.logo-text {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e8b57; /* Green color */
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    background-color: #006f5b; /* Green background */
+    padding: 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 300px; /* Adjust width as needed */
+    justify-content: flex-start; /* Aligns the search bar to the left */
+    margin-left: 0; 
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust icon position */
+    width: 20px;
+    height: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Extra left padding for icon space */
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+
+.nav-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: white; /* White text on green background */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Previous styles remain the same until .auth-buttons */
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* Reduced gap since buttons will have their own padding */
+    margin-left: 20px;
+    
+}
+
+.food-cart-text, .signin-dropdown {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+   /* Added padding to create button shape */
+    border: 2px solid white;  /* White border */
+    transition: all 0.3s ease;  /* Smooth hover effect */
+    width: 150px;
+    border-radius: 25px;
+
+}
+
+
+
+/* Specific style for FOOD CART */
+.food-cart-text {
+    background-color: transparent;  /* No fill color */
+    display: flex; /* Ensures content inside the button is aligned properly */
+    align-items: center; /* Centers the icon and text vertically */
+    justify-content: center; /* Centers the icon and text horizontally */
+    padding: 5px 14px; 
+    width: 200px; /* Adjust width to make it longer */
+    height: 40px;
+    gap: 8px; 
+      /* Slightly rounded corners */
+
+}
+
+.bell-container {
+    width: 30px;
+    height: 30px;
+    background-color: #006f5b; /* Green background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+    
+}
+
+.cart-badge {
+    background-color: white; /* White background */
+    color: #006f5b; /* Text color */
+    font-size: 14px;
+    font-weight: bold;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+}
+
+
+/* Specific style for SIGN IN */
+.signin-dropdown {
+    background-color: rgb(255, 255, 255);  /* Slight white tint */
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between icon and text */
+    display: flex; /* Ensures content inside the button is aligned properly */
+    align-items: center; /* Centers the icon and text vertically */
+    justify-content: center; /* Centers the icon and text horizontally */
+    padding: 8px 10px; 
+    border-radius: 20px;  /* Slightly rounded corners */
+
+
+}
+
+.cart-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.signin-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.signin-icon {
+    height: 24px;
+    width: auto;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+}
+
+
+
+
+:root {
+    --primary: #2e7d32;
+    --primary-light: #81c784;
+    --primary-dark: #1b5e20;
+    --secondary: #ff8f00;
+    --light: #f1f8e9;
+    --white: #ffffff;
+    --text: #263238;
+    --text-light: #546e7a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background-color: var(--light);
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover);
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--black);
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--light));
+}
+
+/* About Content */
+.about-content {
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-80px);
+    margin-bottom: -80px;
+}
+
+h2 {
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--primary);
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: var(--secondary);
+}
+
+/* Footer */
+        footer {
+            background:#006f5b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            position: relative;
+            margin-top: auto;
+        }
+        
+        footer p {
+            color: black;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-light);
+        }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 2rem 1.5rem;
+        transform: translateY(-40px);
+        margin-bottom: -40px;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}

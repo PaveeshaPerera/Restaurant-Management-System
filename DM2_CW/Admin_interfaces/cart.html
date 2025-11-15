@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart & Checkout</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e0f2e9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 800px;
+      margin: 30px 0;
+    }
+
+    .order-info, .customer-info {
+      margin-bottom: 20px;
+      font-size: 16px;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    .customer-info input {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      width: 100%;
+      border: 2px solid #c8e6c9;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .customer-info input:focus {
+      border-color: #2e7d32;
+      outline: none;
+    }
+
+    h2, h3 {
+      color: #2e7d32;
+      margin: 20px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      margin: 10px 0;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .cart-item:hover {
+      transform: translateX(5px);
+    }
+
+    .item-info {
+      flex-grow: 1;
+    }
+
+    .item-info h4 {
+      margin: 0 0 5px 0;
+      color: #1b5e20;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .quantity-controls button {
+      padding: 5px 15px;
+      border: none;
+      background: #2e7d32;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .quantity-controls button:hover {
+      background: #1b5e20;
+    }
+
+    .remove-btn {
+      background: #e53935;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background: #c62828;
+    }
+
+    .total {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: right;
+      color: #2e7d32;
+      margin: 20px 0;
+      padding: 15px;
+      border-top: 2px solid #c8e6c9;
+    }
+
+    .delivery-options, .payment-methods {
+      margin: 25px 0;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .card-input {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border: 2px solid #c8e6c9;
+    }
+
+    .card-input input {
+      flex-grow: 1;
+      border: none;
+      padding: 8px;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .card-logo img {
+      height: 30px;
+      margin-left: 15px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 15px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .checkout-btn:hover {
+      background: #1b5e20;
+    }
+
+    footer {
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        width: 95%;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .quantity-controls {
+        margin-top: 10px;
+      }
+    }
+
+    .back-button {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 25px;
+  background-color: #2e7d32;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid white;
+}
+
+.back-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.back-button:hover {
+  background-color: #1b5e20;
+  transform: translateY(-50%) scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    position: static;
+    margin: 10px auto;
+    transform: none;
+    width: fit-content;
+    display: inline-flex;
+  }
+  
+  .header-content {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .header-content h1 {
+    margin-top: 10px;
+  }
+}
+.success-message {
+    display: none;
+    background: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    border: 1px solid #c3e6cb;
+  }
+
+  .success-message.show {
+    display: block;
+  }
+
+  .success-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .order-id {
+    font-weight: bold;
+    color: #1b5e20;
+    margin: 10px 0;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="Menus.html" class="back-button">
+        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2L2 10L10 18" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        Back to Menu
+      </a>
+      <h1>🛒 Shopping Cart</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Order Info -->
+    <div class="order-info">
+      <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+      <p><strong>Date:</strong> <span id="orderDate"></span></p>
+    </div>
+
+    <!-- Customer Info -->
+    <div class="customer-info">
+      <h3>Customer Details</h3>
+      <input type="text" id="cusName" placeholder="Customer Name" required>
+      <input type="text" id="cusPhone" placeholder="Phone Number" required>
+      <input type="text" id="cusAddress" placeholder="Delivery Address" required>
+    </div>
+
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+
+    <div class="total">Total: <strong id="totalAmount">Rs. 0.00</strong></div>
+
+    <!-- Delivery Options -->
+    <div class="delivery-options">
+      <h3>Delivery Options</h3>
+      <label><input type="radio" name="delivery" value="home" checked> Home Delivery</label>
+      <label><input type="radio" name="delivery" value="pickup"> Store Pickup</label>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="payment-methods">
+      <h3>Payment Method</h3>
+      <label><input type="radio" name="payment" value="credit" checked> Visa Card</label>
+      <div class="card-input">
+        <input type="text" placeholder="Card Number">
+        <div class="card-logo">
+          <img src="../Admin_interfaces/Pictures/visa-logo.png" alt="Visa">
+        </div>
+      </div>
+
+      <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+      <div class="card-input">
+        <input type="text" placeholder="PayPal Email">
+        <div class="card-logo">
+          <img src="../Admin_interfaces/Pictures/mastercard-logo.png" alt="Mastercard">
+        </div>
+      </div>
+
+      <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
+    </div>
+
+    <button class="checkout-btn" onclick="placeOrder()">Proceed to Checkout</button>
+    <div class="success-message" id="successMessage">
+      <div class="success-icon">✓</div>
+      <h2>Order Placed Successfully!</h2>
+      <p class="order-id">Order ID: <span id="successOrderId"></span></p>
+      <p>Thank you for your purchase!</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Urban Food Store | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Initialize cart and display
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartContainer = document.getElementById('cartItems');
+    const totalAmount = document.getElementById('totalAmount');
+
+    // Display initial info
+    document.getElementById('orderDate').textContent = new Date().toLocaleDateString();
+    document.getElementById('orderId').textContent = 'OD' + Math.floor(Math.random() * 1000000);
+
+    function displayCartItems() {
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      if (cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        totalAmount.textContent = 'Rs. 0.00';
+        return;
+      }
+
+      cartItems.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="item-info">
+            <h4>${item.name}</h4>
+            <p>Price: Rs. ${item.price.toFixed(2)}</p>
+            <div class="quantity-controls">
+              <button onclick="updateQuantity(${index}, -1)">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="updateQuantity(${index}, 1)">+</button>
+            </div>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(div);
+      });
+
+      totalAmount.textContent = `Rs. ${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(index, change) {
+      cartItems[index].quantity += change;
+      
+      if (cartItems[index].quantity < 1) {
+        cartItems.splice(index, 1);
+      }
+      
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      displayCartItems();
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      displayCartItems();
+    }
+
+    
+
+    // Initial display
+    displayCartItems();
+
+
+
+   
+   
+    // Replace your existing placeOrder function with this:
+async function placeOrder() {
+  try {
+    const name = document.getElementById('cusName').value.trim();
+    const phone = document.getElementById('cusPhone').value.trim();
+    const address = document.getElementById('cusAddress').value.trim();
+    const orderId = document.getElementById('orderId').textContent;
+
+    // Validations
+    if (!name || !phone || !address) {
+      throw new Error('Please fill in all customer details');
+    }
+
+    if (cartItems.length === 0) {
+      throw new Error('Cart is empty. Please add items before checking out');
+    }
+
+    // Show success message
+    document.getElementById('successOrderId').textContent = orderId;
+    document.getElementById('successMessage').classList.add('show');
+    document.getElementById('checkoutForm').style.display = 'none';
+
+    // Clear cart and reset form
+    localStorage.removeItem('cartItems');
+    cartItems = [];
+    displayCartItems();
+    document.getElementById('cusName').value = '';
+    document.getElementById('cusPhone').value = '';
+    document.getElementById('cusAddress').value = '';
+
+  } catch (error) {
+    alert();
+  }
+}
+  </script>
+</body>
+</html>

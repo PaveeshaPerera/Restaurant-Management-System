@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Login and Sign Up  </title>
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body class="body">
+
+
+    <div class="wrapper">
+        <div class="card-switch">
+            <label class="switch">
+               <input type="checkbox" class="toggle">
+               <span class="slider"></span>
+               <span class="card-side"></span>
+               <div class="flip-card__inner">
+                  <div class="flip-card__front">
+                     <div class="title">Log in</div>
+                     <form class="flip-card__form" action="">
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password">
+                        <button class="flip-card__btn">Let`s go!</button>
+                     </form>
+                  </div>
+                  <div class="flip-card__back">
+                     <div class="title">Sign up</div>
+                     <form class="flip-card__form" action="">
+                        <!-- <input class="flip-card__input" placeholder="Name" type="name"> -->
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password">
+                        <button class="flip-card__btn">Confirm!</button>
+                     </form>
+                  </div>
+               </div>
+            </label>
+        </div>   
+   </div>
+
+<!-- JavaScript Part -->
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+
+      const toggleCheckbox = document.querySelector('.toggle'); // FIX: select the toggle
+
+       // Handle Login Form Submit
+       const loginForm = document.querySelector('.flip-card__front form');
+       loginForm.addEventListener('submit', async function (e) {
+           e.preventDefault();
+   
+           const email = loginForm.querySelector('input[name="email"]').value;
+           const password = loginForm.querySelector('input[name="password"]').value;
+   
+           try {
+               const response = await fetch('http://localhost:8080/login', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   body: JSON.stringify({
+                       username: email,
+                       password: password
+                   })
+               });
+   
+               if (response.ok) {
+                   const data = await response.json();
+                   console.log(data);
+                   alert('Login successful!');
+                   
+                   // Add admin/customer recognition here
+                   if (email.includes('admin@') || email.includes('admin')) {
+                       window.location.href = "dashboard.html"; // Redirect to admin interface
+                   } else {
+                       window.location.href = "Cus_home.html"; // Redirect to customer home
+                   }
+                   
+               } else {
+                   alert('Login failed!');
+               }
+           } catch (error) {
+               console.error('Login failed:', error);
+               alert('Login failed!');
+           }
+       });
+   
+       // Handle Sign Up Form Submit
+       const signupForm = document.querySelector('.flip-card__back form');
+       signupForm.addEventListener('submit', async function (e) {
+           e.preventDefault();
+   
+           const email = signupForm.querySelector('.flip-card__back input[name="email"]').value;
+           const password = signupForm.querySelector('.flip-card__back input[name="password"]').value;
+   
+           try {
+               const response = await fetch('http://localhost:8080/login/signup', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   body: JSON.stringify({
+                       username: email,
+                       password: password
+                   })
+               });
+   
+               if (response.ok) {
+                   const data = await response.json();
+                   console.log(data);
+                   alert('Signup successful! Please log in.');
+
+                   // Flip back to login
+                   toggleCheckbox.checked = false; // uncheck the switch to flip back
+                  
+               } else {
+                   alert('Signup failed!');
+               }
+           } catch (error) {
+               console.error('Signup failed:', error);
+               alert('Signup failed!');
+           }
+       });
+   });
+</script>
+  
+</body>

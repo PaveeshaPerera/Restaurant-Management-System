@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Foods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Cus_home.css">
+</head>
+<body>
+    <div class="logo-bar">
+        <div class="logo-container">
+            <img src="../Customer_interfaces/Pictures/Logonew.jpg" alt="Urban Foods Logo" class="logo-img">
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 15L21 21" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="10" cy="10" r="7" stroke="gray" stroke-width="2"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+            
+            <nav class="nav-tabs">
+                <a href="Cus_home.html">HOME</a>
+                <a href="Menus.html">MENUS</a>
+                <a href="order.html">ORDERS</a>
+                <a href="Feedbacks.html">FEEDBACKS</a>
+                <!-- <a href="#"></a> -->
+                <a href="about.html">ABOUT</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="food-cart-text">
+                    <!-- Bell Icon inside a green circular background -->
+                    <div class="bell-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22s4-1 4-4H8c0 3 4 4 4 4z"></path>
+                            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8z"></path>
+                        </svg>
+                    </div>
+                
+                    <a href="cart.html" class="cart-link">
+                        <span class="cart-text">FOOD CART</span>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+            
+                <div class="signin-dropdown">
+                    <a href="login.html" class="signin-link">
+                        <img src="../Customer_interfaces/Pictures/signin.png" alt="Sign In" class="signin-icon">
+                        <span>SIGN IN</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="carousel">
+        <div class="carousel-images">
+            <div class="slide">
+                <img src="../Customer_interfaces/Pictures/h1.jpg" alt="Food Image 1">
+                <div class="text-overlay">
+                    <h1 class="headline">EAT WELL. DO GOOD.</h1>
+                    <p class="subtext">Delicious, sustainable, and healthy choices.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="../Customer_interfaces/Pictures/h2.jpg" alt="Food Image 2">
+                <div class="text-overlay">
+                    <h1 class="headline">EAT WELL. DO GOOD.</h1>
+                    <p class="subtext">Delicious, sustainable, and healthy choices.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="../Customer_interfaces/Pictures/h3.jpg" alt="Food Image 3">
+                <div class="text-overlay">
+                    <h1 class="headline">EAT WELL. DO GOOD.</h1>
+                    <p class="subtext">Delicious, sustainable, and healthy choices.</p>
+                </div>
+            </div>
+        </div>
+    
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+    
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+    
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? "block" : "none";
+            });
+        }
+    
+        function changeSlide(n) {
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            showSlide(slideIndex);
+        }
+    
+        function autoSlide() {
+            changeSlide(1);
+            setTimeout(autoSlide, 3000);
+        }
+    
+        showSlide(slideIndex);
+        setTimeout(autoSlide, 3000);
+    </script>
+
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="grid-image" style="background-image: url('Pictures/menu.avif');"></div>
+        <h2 class="menu-title">MENU</h2>
+        <a href="Menus.html" class="btn">VIEW MENU</a> 
+    </div>
+    <div class="grid-item">
+        <div class="grid-image" style="background-image: url('Pictures/order.png');"></div>
+        <h2 class="menu-title">ORDERS</h2>
+        <a href="order.html" class="btn">TRACK ORDERS</a>
+    </div>
+    <div class="grid-item">
+        <div class="grid-image" style="background-image: url('Pictures/feedback.png');"></div>
+        <h2 class="menu-title">FEEDBACKS</h2>
+        <a href="Feedbacks.html" class="btn">FEEDBACKS</a>
+    </div>
+    <div class="grid-item">
+        <div class="grid-image" style="background-image: url('Pictures/story.jpg');"></div>
+        <h2 class="menu-title">OUR STORY</h2>
+        <a href="about.html" class="btn">OUR STORY</a>
+    </div>
+</div>
+
+<section class="partnerships">
+    <div class="partners">
+        <img src="../Customer_interfaces/Pictures/partership.png" alt="Partnership Logos">
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2025 Urban Food Store | All Rights Reserved</p>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+    </div>
+</footer>
+
+</body>
+</html>
